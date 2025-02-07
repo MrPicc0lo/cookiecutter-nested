@@ -296,8 +296,6 @@ def _prompt_for_nested_config(parent_key: str, nested_config: dict, no_input=Fal
     :param prefix: A string prefix for formatting (typically used for indentation).
     :return: An OrderedDict mapping nested keys to the entered (or default) values.
     """
-    from collections import OrderedDict
-
     result = OrderedDict()
     # Retrieve custom prompts for nested fields, if defined.
     prompts_nested = nested_config.get('__prompts__', {})
@@ -316,7 +314,7 @@ def _prompt_for_nested_config(parent_key: str, nested_config: dict, no_input=Fal
             if no_input:
                 result[key] = value
             else:
-                result[key] = Prompt.ask(prompt_text, default=value)
+                result[key] = Prompt.ask(f"{nested_prefix}{prompt_text}", default=value)
     return result
 
 def prompt_for_config(
