@@ -360,13 +360,13 @@ def prompt_for_config(
             if not no_input and condition:
                 expected_value = condition.get("value")
                 if choice_val == expected_value:
-                    nested_val = _prompt_for_nested_config(key, nested_cfg, no_input, prefix="")
+                    nested_val = _prompt_for_nested_config(key, nested_cfg, no_input, prefix="    ")
                     cookiecutter_dict[key] = {"choice": choice_val, **nested_val}
                 else:
                     cookiecutter_dict[key] = {"choice": choice_val}
             elif not no_input and not condition:
                 # If no condition is specified, always prompt nested config.
-                nested_val = _prompt_for_nested_config(key, nested_cfg, no_input, prefix="")
+                nested_val = _prompt_for_nested_config(key, nested_cfg, no_input, prefix="    ")
                 cookiecutter_dict[key] = {"choice": choice_val, **nested_val}
             else:
                 cookiecutter_dict[key] = {"choice": choice_val}
