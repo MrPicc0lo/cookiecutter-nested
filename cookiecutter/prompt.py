@@ -379,7 +379,7 @@ def prompt_for_config(
         try:
             if isinstance(raw, list):
                 val = prompt_choice_for_config(cookiecutter_dict, env, key, raw, no_input, prompts, prefix_local)
-                cookiecutter_dict[key] = val
+                cookiecutter_dict[key] = {"choice": val}
             elif isinstance(raw, bool):
                 if no_input:
                     cookiecutter_dict[key] = render_variable(env, raw, cookiecutter_dict)
